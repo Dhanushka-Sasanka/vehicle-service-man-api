@@ -15,18 +15,20 @@ const adminRoutes = require('./routes/adminRouter');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
+const pjax = require('express-pjax');
 
 
 const configs = require("./configs/app-config");
 const db = require("./util/database");
 
 
-app.use(bodyParser.urlencoded({extends:false})); // x-www-form-urlencoded <form></form>
-// app.use(bodyParser.json()); // application/json <form></form>
+// app.use(bodyParser.urlencoded({extends:false})); // x-www-form-urlencoded <form></form>
+app.use(bodyParser.json()); // application/json <form></form>
 
 
 // app.use(bodyParser.urlencoded({extends:false}));
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../src/views/template/controllers')));
 
 // template partials path
 const templatePath = path.join(__dirname, '/views');
@@ -35,14 +37,24 @@ const partialPath = path.join(__dirname, '/views/template/admin');
 app.set('view engine','hbs');
 app.engine('html', require('hbs').__express);
 app.set('views', templatePath);
+app.use(pjax());
 template.registerPartials(partialPath);
 // db.execute('')
 
+app.use((req, res , next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods','POST, PUT, PATCH, DELETE , GET ,OPTIONS');
+    // res.setHeader('Access-Control-Allow-Headers','Content-Type ,Authorization');
+    res.setHeader('Access-Control-Allow-Headers','*');
+    next();
+});
 
 
 /*all app routers in here*/
-app.use('/employees' , employeeRoutes);
 app.use('/admin' , adminRoutes);
+app.use('/employees' , employeeRoutes);
+
+
 
 // app.use('/employees' , adminRoutes);
 // app.use(shopRoutes);
@@ -56,13 +68,6 @@ app.use('/login', (req, res , next)=>{
 
 
 
-app.use((req, res , next)=>{
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.setHeader('Access-Control-Allow-Methods','POST, PUT, PATCH, DELETE , GET ,OPTIONS');
-    // res.setHeader('Access-Control-Allow-Headers','Content-Type ,Authorization');
-    res.setHeader('Access-Control-Allow-Headers','*');
-    next();
-});
 
 
 

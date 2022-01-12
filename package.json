@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "body-parser": "^1.19.0",
     "bootstrap": "^5.1.3",
     "express": "^4.17.1",
     "express-handlebars": "^6.0.2",
+    "express-pjax": "0.0.1",
     "hbs": "^4.2.0",
     "mysql2": "^2.3.3"
   },

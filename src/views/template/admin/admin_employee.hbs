@@ -1,3 +1,185 @@
+<div class="container-fluid">
+
+    <div class="row">
 
 
-<!--/row-->
+        <div class="col-sm-3 col-md-3">
+            <!--left col-->
+            {{#if isSavedEmployee}}
+                <div class="alert alert-success " id="isAddedAlert" role="alert">
+                    Employee Added Success..!
+                </div>
+                <script>
+                    setTimeout(() => {
+                        document.getElementById('isAddedAlert').remove();
+                    }, 5000);
+                </script>
+
+            {{/if}}
+
+            {{#if isDeleteEmployee}}
+                <div class="alert alert-danger " id="isDeleteAlert" role="alert">
+                    Employee Delete Success..!
+                </div>
+                <script>
+                    setTimeout(() => {
+                        document.getElementById('isDeleteAlert').remove();
+                    }, 5000);
+                </script>
+
+            {{/if}}
+
+            <ul class="list-group">
+
+                <li class="list-group-item text-black" style="font-weight:bolder">ADD EMPLOYER</li>
+
+                <div class="tab-pane" id="settings">
+
+                    <hr>
+                    <form class="form" action="/employees/createEmployee" method="post" id="registrationForm">
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="employeeType">Type</label>
+                                <select class="form-control" name="employeeType" id="employeeType">
+                                    <option selected value="WORKER">WORKER</option>
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="SYSTEM_MAINTAINER">System Maintainer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="employeeID">Employee ID</label>
+                                <input type="text" class="form-control" name="employeeID"
+                                       id="employeeID" placeholder="Employee ID" title="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="full_name">Full Name</label>
+                                <input type="text" class="form-control" name="full_name"
+                                       id="full_name" placeholder="full name name" title="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="nicNo">NIC</label>
+                                <input type="text" class="form-control" name="nicNo" id="nicNo"
+                                       placeholder="Enter NIC No" title="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile">Mobile</label>
+                                <input type="text" class="form-control" name="mobile" id="mobile"
+                                       placeholder="enter mobile number"
+                                       title="enter your mobile number if any.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="pwd">Password</label>
+                                <input type="password" class="form-control" name="pwd"
+                                       id="pwd" placeholder="password"
+                                       title="enter your password.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit" id="saveEmployee"><i
+                                        class="glyphicon glyphicon-ok-sign"></i> Save
+                                </button>
+                                <button class="btn btn-lg" type="button" id="test"><i
+                                        class="glyphicon glyphicon-repeat"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </ul>
+
+
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9 col-md-9">
+
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>Name</th>
+                        <th>NIC</th>
+                        <th>Mobile</th>
+                        <th>Password</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="items">
+
+                    {{#each employeeList}}
+                        <tr>
+                            <td>{{this.emp_id}}</td>
+                            <td>{{this.emp_name}}</td>
+                            <td>{{this.emp_nic}}</td>
+                            <td>{{this.emp_mobile}}</td>
+                            <td>{{this.emp_pwd}}</td>
+                            <td>{{this.emp_type}}</td>
+                            <td>{{this.emp_status}}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" id="editBtn" onclick="getEmployeeById('{{this.emp_id}}')">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm " id="removeBtn" href="/employees/deleteEmployee/{{this.emp_id}}">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    {{else}}
+                        <td class="text-center text-danger" colspan="7">No Employees Found.!</td>
+
+                    {{/each}}
+
+
+                    </tbody>
+                </table>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                        <ul class="pagination" id="myPager"></ul>
+                    </div>
+                </div>
+            </div>
+            <!--/table-resp-->
+
+            <hr>
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+
+
+
+
+</script>

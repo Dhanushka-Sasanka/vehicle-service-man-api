@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{pageTitle}}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 </head>
 <body class="main-body">
 
@@ -36,152 +38,7 @@
 
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="container-fluid">
-
-                        <div class="row">
-
-
-                            <div class="col-sm-3 col-md-3">
-                                <!--left col-->
-
-                                <ul class="list-group">
-                                    <li class="list-group-item text-black" style="font-weight:bolder">ADD EMPLOYER</li>
-
-                                    <div class="tab-pane" id="settings">
-
-                                        <hr>
-                                        <form class="form" action="##" method="post" id="registrationForm">
-
-                                            <div class="form-group">
-
-                                                <div class="col-xs-6">
-                                                    <label for="last_name">Last name</label>
-                                                    <select class="form-control" name="employeeType" id="employeeType">
-                                                        <option value="1">Admin</option>
-                                                        <option value="2">Employee</option>
-                                                        <option value="3">System Maintainer</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-
-                                                <div class="col-xs-6">
-                                                    <label for="phone">Employee ID</label>
-                                                    <input type="text" class="form-control" name="employeeID"
-                                                           id="employeeID" placeholder="Employee ID" title="">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-
-                                                <div class="col-xs-6">
-                                                    <label for="first_name">Full Name</label>
-                                                    <input type="text" class="form-control" name="full_name"
-                                                           id="full_name" placeholder="full_name name" title="">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-xs-6">
-                                                    <label for="mobile">Mobile</label>
-                                                    <input type="text" class="form-control" name="nic" id="nic"
-                                                           placeholder="Enter NIC No" title="">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-xs-6">
-                                                    <label for="mobile">Mobile</label>
-                                                    <input type="text" class="form-control" name="mobile" id="mobile"
-                                                           placeholder="enter mobile number"
-                                                           title="enter your mobile number if any.">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-
-                                                <div class="col-xs-6">
-                                                    <label for="password">Password</label>
-                                                    <input type="password" class="form-control" name="password"
-                                                           id="password" placeholder="password"
-                                                           title="enter your password.">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-xs-12">
-                                                    <br>
-                                                    <button class="btn btn-lg btn-success" type="submit"><i
-                                                            class="glyphicon glyphicon-ok-sign"></i> Save
-                                                    </button>
-                                                    <button class="btn btn-lg" type="reset"><i
-                                                            class="glyphicon glyphicon-repeat"></i> Reset
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-
-                                </ul>
-
-
-                            </div>
-                            <!--/col-3-->
-                            <div class="col-sm-9 col-md-9">
-
-
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>#ID</th>
-                                            <th>Name</th>
-                                            <th>NIC</th>
-                                            <th>Mobile</th>
-                                            <th>Password</th>
-                                            <th>Type</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="items">
-
-                                        {{#each employeeList}}
-                                            <tr>
-                                                <td>{{this.emp_id}}</td>
-                                                <td>{{this.emp_name}}</td>
-                                                <td>{{this.emp_nic}}</td>
-                                                <td>{{this.emp_mobile}}</td>
-                                                <td>{{this.emp_pwd}}</td>
-                                                <td>{{this.emp_type}}</td>
-                                                <td>{{this.emp_status}}</td>
-
-                                            </tr>
-                                                {{else}}
-                                        <td class="text-center text-danger" colspan="7">No Employees Found.!</td>
-
-                                        {{/each}}
-
-
-                                        </tbody>
-                                    </table>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-4 col-md-offset-4 text-center">
-                                            <ul class="pagination" id="myPager"></ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/table-resp-->
-
-                                <hr>
-
-                            </div>
-
-
-                        </div>
-                    </div>
+                   {{>admin_employee}}
                 </div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                     Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat
@@ -204,7 +61,7 @@
         </div>
     </div>
 </div>
-
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -214,5 +71,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+
+
+
 </body>
 </html>
