@@ -1,0 +1,44 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+      id="bootstrap-css">
+<link rel="stylesheet" href="/css/auth_css.css">
+<!--<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>-->
+
+<div class="login-container animated fadeInDown bootstrap snippets bootdeys">
+    <div class="loginbox bg-white">
+        <div class="loginbox-title">SIGN UP</div>
+
+        <form method="POST" action="/auth/register">
+
+            {{#if message}}
+                <div class="loginbox-textbox">
+                    <div class="alert alert-success" id="register-alert" role="alert">
+                        {{message}}
+                    </div>
+                </div>
+                <script>
+                    setTimeout(() => {
+                        document.getElementById('register-alert').remove();
+                    }, 10000);
+                </script>
+
+            {{/if}}
+
+            <div class="loginbox-textbox">
+                <input type="email" class="form-control" placeholder="Email" name="email">
+            </div>
+
+            <div class="loginbox-textbox">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+            </div>
+
+            <div class="loginbox-submit">
+                <button type="submit" class="btn btn-default btn-block">Register</button>
+            </div>
+        </form>
+        <div class="loginbox-signup">
+            <a href="/auth/login">Already have an account?</a>
+        </div>
+    </div>
+</div>

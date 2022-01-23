@@ -6,9 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
     <link rel="stylesheet" href="/css/main.css">
-
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body class="main-body">
 
@@ -24,21 +22,18 @@
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link" id="nav-home-tab" href="/admin/dashboard/system">System</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" href="/admin/dashboard/employee">Employee</a>
-                    <a class="nav-item nav-link" id="nav-contact-tab" href="/admin/dashboard/appointment">Appointment</a>
+                    <a class="nav-item nav-link active" id="nav-appointment-tab" href="/admin/dashboard/appointment"
+                       aria-controls="nav-appointment" aria-selected="true">Appointment</a>
                     <a class="nav-item nav-link" id="nav-about-tab" href="/admin/dashboard/service">Services</a>
-                    <a class="nav-item nav-link active" id="nav-summary-tab" href="/admin/dashboard/summary"
-                       data-toggle="tab" role="tab" aria-controls="nav-summary" aria-selected="true">Summary</a>
+                    <a class="nav-item nav-link" id="nav-about-tab" href="/admin/dashboard/summary">Summary</a>
                 </div>
             </nav>
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                <!--                <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">-->
+                <div class="tab-pane fade show active" id="nav-appointment" role="tabpanel" aria-labelledby="nav-appointment-tab">
 
-                <!--                </div>-->
-                <div class="tab-pane fade show active" id="nav-summary"  aria-labelledby="nav-summary-tab" role="tabpanel">
+                    <h1>Appointment</h1>
 
-                    {{>admin_summary}}
                 </div>
-
             </div>
 
         </div>

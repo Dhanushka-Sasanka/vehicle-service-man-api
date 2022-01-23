@@ -8,8 +8,10 @@ const express = require('express');
 const template = require('hbs');
 
 /*all app router paths in here*/
-const employeeRoutes = require('./routes/employeeRouter');
+const authRoutes = require('./routes/authRouter');
 const adminRoutes = require('./routes/adminRouter');
+const employeeRoutes = require('./routes/employeeRouter');
+const serviceRoutes = require('./routes/serviceRouter');
 
 
 const app = express();
@@ -22,7 +24,7 @@ const configs = require("./configs/app-config");
 const db = require("./util/database");
 
 
-// app.use(bodyParser.urlencoded({extends:false})); // x-www-form-urlencoded <form></form>
+app.use(bodyParser.urlencoded({extends:false})); // x-www-form-urlencoded <form></form>
 app.use(bodyParser.json()); // application/json <form></form>
 
 
@@ -36,7 +38,7 @@ const partialPath = path.join(__dirname, '/views/template/admin');
 /*set view template */
 app.set('view engine','hbs');
 app.engine('html', require('hbs').__express);
-app.set('views', templatePath);
+app.set('views', templatePath );
 app.use(pjax());
 template.registerPartials(partialPath);
 // db.execute('')
@@ -51,8 +53,11 @@ app.use((req, res , next)=>{
 
 
 /*all app routers in here*/
+app.use('/auth' , authRoutes);
+// app.use('/sign-up' , adminRoutes);
 app.use('/admin' , adminRoutes);
 app.use('/employees' , employeeRoutes);
+app.use('/service' , serviceRoutes);
 
 
 
@@ -62,9 +67,9 @@ app.use('/employees' , employeeRoutes);
 
 
 
-app.use('/login', (req, res , next)=>{
-    res.render('login',{name:'Dhanushka'});
-});
+// app.use('/login', (req, res , next)=>{
+//     res.render('login',{name:'Dhanushka'});
+// });
 
 
 

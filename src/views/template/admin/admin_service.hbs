@@ -1,0 +1,111 @@
+<div class="container-fluid">
+
+
+    <div class="row">
+
+
+        <div class="col-sm-3 col-md-3">
+            <!--left col-->
+            {{#if isSavedEmployee}}
+                <div class="alert alert-success " id="isAddedAlert" role="alert">
+                    Employee Added Success..!
+                </div>
+                <script>
+                    setTimeout(() => {
+                        document.getElementById('isAddedAlert').remove();
+                    }, 5000);
+                </script>
+
+            {{/if}}
+
+            {{#if isDeleteEmployee}}
+                <div class="alert alert-danger " id="isDeleteAlert" role="alert">
+                    Employee Delete Success..!
+                </div>
+                <script>
+                    setTimeout(() => {
+                        document.getElementById('isDeleteAlert').remove();
+                    }, 5000);
+                </script>
+
+            {{/if}}
+
+            <ul class="list-group">
+
+                <li class="list-group-item text-black" style="font-weight:bolder">ADD NEW SERVICE</li>
+
+                <div class="tab-pane" id="settings">
+
+                    <hr>
+                    <form class="form" id="serviceForm">
+
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="serviceID">Service ID</label>
+                                <input type="text" class="form-control" name="serviceID"
+                                       id="serviceID" title="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="serviceType">Service Type</label>
+                                <input type="text" class="form-control" name="serviceType"
+                                       id="serviceType" title="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="servicePrice">Price RS :</label>
+                                <input type="text" class="form-control" name="servicePrice"
+                                       id="servicePrice" title="">
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-warning" id="serviceUpdateBtn"> UPDATE</button>
+                        <button type="button" class="btn btn-success" id="serviceSaveBtn"> SAVE</button>
+
+                    </form>
+                </div>
+
+
+            </ul>
+
+
+        </div>
+
+        <div class="col-sm-9 col-md-9">
+
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+
+                        <th>Service ID</th>
+                        <th>Service Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="serviceTable">
+
+
+                    </tbody>
+
+                </table>
+
+                <hr>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
