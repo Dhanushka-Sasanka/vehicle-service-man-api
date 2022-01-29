@@ -13,6 +13,10 @@ exports.registerCustomer = async (req, res, next) => {
 
     let email = req.body.email;
     let password = req.body.password;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let contact = req.body.contact;
+    let nic = req.body.nic;
 
     User.getUserByEmail(email).then(([rows, fieldSet]) => {
         // console.log(rows.length);
@@ -23,7 +27,7 @@ exports.registerCustomer = async (req, res, next) => {
             // return res.render('register',{ message: "Email already exist.!",});
         } else {
             return bcrypt.hash(password, 12).then(hashedPassword => {
-                const newUser = new User(email, hashedPassword, "CUSTOMER");
+                const newUser = new User(email, hashedPassword, "CUSTOMER" ,firstName,lastName,contact,nic);
                 return newUser.saveUser()
             }).then(() => {
                 res.render('login', {
