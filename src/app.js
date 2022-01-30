@@ -1,7 +1,4 @@
-/**
- * @author Dhanushka Paranavithana
- * @since 28/11/2021  00:03
- **/
+
 // 'use strict';
 
 const express = require('express');

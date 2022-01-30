@@ -1,7 +1,7 @@
 /*server configurations*/
 
 module.exports = {
-    serverPort: 3000,
+    serverPort: process.env.PORT || 3000,
     dbHost: "localhost",
     dbName: "vehicle_manger",
     dbPort: "3306",
