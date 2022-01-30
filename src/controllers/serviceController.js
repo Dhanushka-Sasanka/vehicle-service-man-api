@@ -13,7 +13,7 @@ exports.createService = async (req, res, next) => {
 
     const newService = new Service(serviceID, serviceType, servicePrice);
     // const newService = new Service("S001", "Interio", 1250.00);
-    console.log(res);
+    // console.log(res);
 
     newService.saveService().then(() => {
         res.json("1");

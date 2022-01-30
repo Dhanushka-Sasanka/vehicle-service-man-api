@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRouter');
 const adminRoutes = require('./routes/adminRouter');
 const employeeRoutes = require('./routes/employeeRouter');
 const serviceRoutes = require('./routes/serviceRouter');
+const appointmentRoutes = require('./routes/appoinmentRouter');
 
 
 const app = express();
@@ -55,6 +56,7 @@ app.use('/auth' , authRoutes);
 app.use('/admin' , adminRoutes);
 app.use('/employees' , employeeRoutes);
 app.use('/service' , serviceRoutes);
+app.use('/appointment' , appointmentRoutes);
 
 
 
