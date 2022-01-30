@@ -69,8 +69,8 @@ exports.createEmployee = async (req, res, next) => {
     let employeePwd = req.body.pwd;
     let employeeType = req.body.employeeType;
     const employeeStatus = "ACTIVE";
-    // const newEmployee = new Employee(employeeID, employeeName, employeeNicNo, employeeMobile, employeePwd, employeeType, employeeStatus)
-    const newEmployee = new Employee("E068", "Sandya", "953565652V", "075523253", "1234", "ADMIN", employeeStatus);
+    const newEmployee = new Employee(employeeID, employeeName, employeeNicNo, employeeMobile, employeePwd, employeeType, employeeStatus)
+    // const newEmployee = new Employee("E068", "Sandya", "953565652V", "075523253", "1234", "ADMIN", employeeStatus);
     let currentDate = new Date().toISOString();
 
     newEmployee.saveEmployee().then(() => {
