@@ -82,3 +82,12 @@ exports.removeAppointment = (req, res, next) => {
     });
 };
 
+exports.fetchAppointmentById = (req, res, next) => {
+    let appID = req.params.appID;
+    Appointment.getAppointmentById(appID).then(([rows, fieldSet]) => {
+        res.json(rows);
+    }).catch(error => {
+        console.log(error);
+    });
+};
+

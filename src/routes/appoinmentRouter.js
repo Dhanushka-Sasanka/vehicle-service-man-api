@@ -7,8 +7,9 @@ const appointmentController = require('../controllers/appointmentController');
 
 router.get('/fetchAppointments', appointmentController.fetchAppointment);
 router.post('/createAppointment', appointmentController.addAppointment);
-router.post('/updateAppointment/:appId', appointmentController.updateAppointment);
-router.post('/deleteAppointment/:appId', appointmentController.removeAppointment);
+router.get('/getAppointmentById/:appID', appointmentController.fetchAppointmentById);
+router.post('/updateAppointment/:appID', appointmentController.updateAppointment);
+router.post('/deleteAppointment/:appID', appointmentController.removeAppointment);
 
 
 
