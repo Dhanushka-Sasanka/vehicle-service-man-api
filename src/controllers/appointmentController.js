@@ -28,6 +28,7 @@ exports.addAppointment = (req, res, next) => {
     })
 };
 
+
 exports.updateAppointment = (req, res, next) => {
     let appID = req.params.appID;
     let vehicleID = req.body.vehicleID;
@@ -85,6 +86,15 @@ exports.removeAppointment = (req, res, next) => {
 exports.fetchAppointmentById = (req, res, next) => {
     let appID = req.params.appID;
     Appointment.getAppointmentById(appID).then(([rows, fieldSet]) => {
+        res.json(rows);
+    }).catch(error => {
+        console.log(error);
+    });
+};
+
+exports.fetchAppointmentsByCustomerID = (req, res, next) => {
+    let userID = req.params.userID;
+    Appointment.fetchAllAppointmentsByCustomerID(userID).then(([rows, fieldSet]) => {
         res.json(rows);
     }).catch(error => {
         console.log(error);

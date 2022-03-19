@@ -8,32 +8,32 @@ module.exports = class Service {
         this.servicePrice = servicePrice;
     }
 
-     static fetchAllServices() {
+    static fetchAllServices() {
 
-         const query = "SELECT * FROM services";
-         return db.execute(query);
+        const query = "SELECT * FROM services";
+        return db.execute(query);
 
-     }
+    }
 
-     saveService(){
+    saveService() {
         const query = "INSERT INTO services VALUE(?,?,?)";
-         return db.execute(query,[this.serviceID ,this.serviceType ,this.servicePrice]);
-     }
+        return db.execute(query, [this.serviceID, this.serviceType, this.servicePrice]);
+    }
 
-    static removeService(serviceID){
+    static removeService(serviceID) {
         const query = "DELETE FROM services WHERE serviceID = ?";
-        return db.execute(query,[serviceID]);
+        return db.execute(query, [serviceID]);
     }
-    static getServiceById(serviceID){
+
+    static getServiceById(serviceID) {
         const query = "SELECT * FROM services WHERE serviceID = ?";
-        return db.execute(query,[serviceID]);
+        return db.execute(query, [serviceID]);
     }
 
-     updateService(){
+    updateService() {
         const query = "UPDATE services set  serviceType = ? ,price = ? WHERE serviceID = ?";
-        return db.execute(query,[this.serviceType ,this.servicePrice , this.serviceID]);
+        return db.execute(query, [this.serviceType, this.servicePrice, this.serviceID]);
     }
-
 
 
 };

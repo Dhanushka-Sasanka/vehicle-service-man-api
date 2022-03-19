@@ -41,6 +41,38 @@ exports.registerCustomer = async (req, res, next) => {
 
 }
 
+exports.registerCustomerMobileApp = async (req, res, next) => {
+
+    let email = req.body.email;
+    let password = req.body.password;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let contact = req.body.contact;
+    let nic = req.body.nic;
+
+    User.getUserByEmail(email).then(([rows, fieldSet]) => {
+        // console.log(rows.length);
+        // console.log(rows);
+
+        if (rows.length !== 0) {
+            return  res.json(0);
+            // return res.render('register',{ message: "Email already exist.!",});
+        } else {
+            return bcrypt.hash(password, 12).then(hashedPassword => {
+                const newUser = new User(email, hashedPassword, "CUSTOMER" ,firstName,lastName,contact,nic);
+                return newUser.saveUser()
+            }).then(() => {
+                return  res.json(1);
+            });
+        }
+    }).catch(error => {
+        console.log(error);
+    })
+
+}
+
+
+
 
 exports.signIn = async (req, res, next) => {
 

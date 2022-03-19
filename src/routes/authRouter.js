@@ -8,6 +8,7 @@ router.get('/sign-up', authController.registerView);
 
 
 router.post('/register', authController.registerCustomer);
+router.post('/registerCustomerMobileApp', authController.registerCustomerMobileApp);
 router.post('/sign-in', authController.signIn);
 
 
