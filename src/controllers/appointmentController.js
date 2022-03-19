@@ -18,9 +18,11 @@ exports.addAppointment = (req, res, next) => {
     let pickDate = req.body.pickDate;
     let pickTime = req.body.pickTime;
     let servicePrice = req.body.servicePrice;
+    let userID = req.body.userID;
     let status = "PENDING";
 
-    const newAppointment = new Appointment(0,pickDate,pickTime,vehicleID,status,0,serviceID,servicePrice);
+    const newAppointment = new Appointment(0,pickDate,pickTime,vehicleID,status,0,serviceID,servicePrice,userID);
+    console.log(newAppointment);
     newAppointment.saveAppointment().then(() => {
         res.json("1");
     }).catch(error => {

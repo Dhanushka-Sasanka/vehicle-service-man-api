@@ -2,7 +2,7 @@ const db = require('../util/database');
 
 module.exports = class Appointment {
 
-    constructor(appID, pickDate ,pickTime ,vehicleID ,status,feedbackID,serviceID,servicePrice,addDate,userID) {
+    constructor(appID, pickDate ,pickTime ,vehicleID ,status,feedbackID,serviceID,servicePrice,userID) {
         this.appID = appID;
         this.pickDate = pickDate;
         this.pickTime = pickTime;
