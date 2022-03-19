@@ -13,7 +13,7 @@ module.exports = class User {
     }
 
     static fetchAllUsers() {
-        // let dbs = require('../util/database');
+
         const query = "SELECT * FROM users";
         return db.execute(query);
 
