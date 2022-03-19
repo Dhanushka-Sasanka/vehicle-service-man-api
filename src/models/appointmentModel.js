@@ -22,9 +22,9 @@ module.exports = class Appointment {
          const query = "SELECT * FROM appointment";
          return db.execute(query);
      }
-     static fetchAllAppointmentsByCustomerID() {
+     static fetchAllAppointmentsByCustomerID(userID) {
          const query = "SELECT * FROM appointment where userID = ?";
-         return db.execute(query);
+         return db.execute(query,[userID]);
      }
 
     static removeAppointment(appID){

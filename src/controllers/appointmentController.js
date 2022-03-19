@@ -39,8 +39,9 @@ exports.updateAppointment = (req, res, next) => {
     let pickTime = req.body.pickTime;
     let servicePrice = req.body.servicePrice;
     let status = req.body.status;
+    let userID = req.body.userID;
 
-    const updatedAppointment = new Appointment(appID,pickDate,pickTime,vehicleID,status,0,serviceID,servicePrice);
+    const updatedAppointment = new Appointment(appID,pickDate,pickTime,vehicleID,status,0,serviceID,servicePrice,userID);
     updatedAppointment.updateAppointment().then(([result, fieldSet]) => {
         // console.log(result);
         if (result.affectedRows === 1) {
