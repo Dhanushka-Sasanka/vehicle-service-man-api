@@ -18,7 +18,7 @@ module.exports = class Vehicle {
 
      saveVehicle(){
         const query = "INSERT INTO vehicle VALUE(?,?,?,?)";
-         return db.execute(query,[this.vehicleID ,this.vehicleType ,this.regNo ,this.customerID]);
+         return db.execute(query,[0,this.vehicleType ,this.regNo ,this.customerID]);
      }
 
     static removeVehicle(vehicleID){
