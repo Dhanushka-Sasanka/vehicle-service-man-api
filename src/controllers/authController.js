@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 
+
 exports.customerLoginView = (req, res, next) => {
     res.render('login');
 };
@@ -27,7 +28,7 @@ exports.registerCustomer = async (req, res, next) => {
             // return res.render('register',{ message: "Email already exist.!",});
         } else {
             return bcrypt.hash(password, 12).then(hashedPassword => {
-                const newUser = new User(email, hashedPassword, "CUSTOMER" ,firstName,lastName,contact,nic);
+                const newUser = new User(email, hashedPassword, "CUSTOMER", firstName, lastName, contact, nic);
                 return newUser.saveUser()
             }).then(() => {
                 res.render('login', {
@@ -55,14 +56,14 @@ exports.registerCustomerMobileApp = async (req, res, next) => {
         // console.log(rows);
 
         if (rows.length !== 0) {
-            return  res.json(0);
+            return res.json(0);
             // return res.render('register',{ message: "Email already exist.!",});
         } else {
             return bcrypt.hash(password, 12).then(hashedPassword => {
-                const newUser = new User(email, hashedPassword, "CUSTOMER" ,firstName,lastName,contact,nic);
+                const newUser = new User(email, hashedPassword, "CUSTOMER", firstName, lastName, contact, nic);
                 return newUser.saveUser()
             }).then(() => {
-                return  res.json(1);
+                return res.json(1);
             });
         }
     }).catch(error => {
@@ -72,28 +73,23 @@ exports.registerCustomerMobileApp = async (req, res, next) => {
 }
 
 
-
-
 exports.signIn = async (req, res, next) => {
 
     let inputEmail = req.body.email;
     let inputPassword = req.body.password;
+    let userType = req.body.userType;
 
     User.getUserByEmail(inputEmail).then(([rows, fieldSet]) => {
 
-        console.log(rows);
+        // console.log(rows);
         console.log(inputPassword);
-        console.log(rows[0].password);
+        // console.log(rows[0].password);
 
-        if (rows.length === 0) {
+        if ((userType === "ADMIN" || userType === "EMPLOYEE") && rows.length === 0) {
             return res.redirect('/auth/login');
-        } else {
-
-            bcrypt.compare(inputPassword , rows[0].password).then(doMatch => {
+        } else if ((userType === "ADMIN" || userType === "EMPLOYEE") && rows.length > 0) {
+            bcrypt.compare(inputPassword, rows[0].password).then(doMatch => {
                 if (doMatch) {
-
-                    // console.log(err);
-                    // return res.redirect('/admin/dashboard/system');
 
                     req.session.isLoggedIn = true;
                     req.session.user = rows;
@@ -108,16 +104,27 @@ exports.signIn = async (req, res, next) => {
                     console.log(err);
                 });
 
-            /*   return bcrypt.hash(password, 12).then(hashedPassword => {
-                   const newUser = new User(email, hashedPassword, "CUSTOMER");
-                   return newUser.saveUser()
-
-               }).then(() => {
-                   res.render('login', {
-                       message: 1001,
-                   });
-               });*/
         }
+
+        if (userType === "CUSTOMER" && rows.length === 0) {
+            return res.json('/auth/login');
+        } else if ((userType === "CUSTOMER" && rows.length > 0)) {
+            bcrypt.compare(inputPassword, rows[0].password).then(doesMatch => {
+                if (doesMatch) {
+                    // req.session.isLoggedIn = true;
+                    // req.session.user = rows;
+                    return req.session.save(err => {
+                        console.log(err);
+                        res.json('user logged in');
+                    });
+                }
+                return res.json('/auth/login');
+            })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
+
     }).catch(error => {
         console.log(error);
     })
