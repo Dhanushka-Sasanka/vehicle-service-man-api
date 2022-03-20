@@ -14,13 +14,13 @@ exports.fetchAllVehicle = (req, res, next) => {
 
 exports.createVehicle= async (req, res, next) => {
 
-    let vehicleID = req.body.vehicleID
+    // let vehicleID = req.body.vehicleID
     let vehicleType = req.body.vehicleType;
     let regNo = req.body.regNo;
     let customerID = req.body.customerID;
 
 
-    const newVehicle = new Vehicle(vehicleID,vehicleType,regNo,customerID);
+    const newVehicle = new Vehicle(0,vehicleType,regNo,customerID);
 
     newVehicle.saveVehicle().then(() => {
         res.json("1");
