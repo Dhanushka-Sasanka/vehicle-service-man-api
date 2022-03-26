@@ -2,7 +2,7 @@ const db = require('../util/database');
 
 module.exports = class Appointment {
 
-    constructor(appID, pickDate ,pickTime ,vehicleID ,status,feedbackID,serviceID,servicePrice,userID) {
+    constructor(appID, pickDate, pickTime, vehicleID, status, feedbackID, serviceID, servicePrice, userID) {
         this.appID = appID;
         this.pickDate = pickDate;
         this.pickTime = pickTime;
@@ -13,39 +13,41 @@ module.exports = class Appointment {
         this.servicePrice = servicePrice;
         this.userID = userID;
     }
-      saveAppointment(){
-        const query = "INSERT INTO appointment(appID, date ,time ,vehicleID ,status,service_ID,price,userID) VALUE(?,?,?,?,?,?,?,?)";
-         return db.execute(query,[this.appID, this.pickDate, this.pickTime, this.vehicleID , this.status, this.serviceID ,this.servicePrice ,this.userID]);
-     }
 
-     static fetchAllAppointments() {
-         const query = "SELECT * FROM appointment";
-         return db.execute(query);
-     }
-     static fetchAllAppointmentsByCustomerID(userID) {
-         const query = "SELECT * FROM appointment where userID = ?";
-         return db.execute(query,[userID]);
-     }
+    static fetchAllAppointments() {
+        const query = "SELECT * FROM appointment";
+        return db.execute(query);
+    }
 
-    static removeAppointment(appID){
+    static fetchAllAppointmentsByCustomerID(userID) {
+        const query = "SELECT * FROM appointment where userID = ?";
+        return db.execute(query, [userID]);
+    }
+
+    static removeAppointment(appID) {
         const query = "DELETE FROM appointment WHERE appID = ?";
-        return db.execute(query,[appID]);
+        return db.execute(query, [appID]);
     }
-    static getAppointmentById(appID){
+
+    static getAppointmentById(appID) {
         const query = "SELECT * FROM appointment WHERE appID = ?";
-        return db.execute(query,[appID]);
+        return db.execute(query, [appID]);
     }
 
-     updateAppointment(){
+    saveAppointment() {
+        const query = "INSERT INTO appointment(appID, date ,time ,vehicleID ,status,service_ID,price,userID) VALUE(?,?,?,?,?,?,?,?)";
+        return db.execute(query, [this.appID, this.pickDate, this.pickTime, this.vehicleID, this.status, this.serviceID, this.servicePrice, this.userID]);
+    }
+
+    updateAppointment() {
         const query = "UPDATE appointment set date = ? ,time = ? ,vehicleID = ? , status = ? ,feedbackID = ? ,service_ID = ? ,price = ?  WHERE appID = ? ";
-        return db.execute(query,[this.pickDate, this.pickTime, this.vehicleID , this.status, this.feedbackID , this.serviceID ,this.servicePrice ,this.appID]);
+        return db.execute(query, [this.pickDate, this.pickTime, this.vehicleID, this.status, this.feedbackID, this.serviceID, this.servicePrice, this.appID]);
     }
 
-    updateAppointmentStatus(){
+    updateAppointmentStatus() {
         const query = "UPDATE appointment set status = ?  WHERE appID = ?";
-        return db.execute(query,[ this.status,this.appID]);
+        return db.execute(query, [this.status, this.appID]);
     }
-
 
 
 };

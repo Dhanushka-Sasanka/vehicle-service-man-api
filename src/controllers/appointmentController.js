@@ -8,7 +8,8 @@ exports.fetchAppointment = (req, res, next) => {
     Appointment.fetchAllAppointments().then(([rows, fieldSet]) => {
         res.json(rows);
     }).catch(error => {
-        console.log(error);
+         console.log(error);
+        next(new Error(error));
     });
 };
 
@@ -26,7 +27,8 @@ exports.addAppointment = (req, res, next) => {
     newAppointment.saveAppointment().then(() => {
         res.json("1");
     }).catch(error => {
-        console.log(error);
+         console.log(error);
+        next(new Error(error));
     })
 };
 
@@ -51,7 +53,8 @@ exports.updateAppointment = (req, res, next) => {
 
         }
     }).catch(error => {
-        console.log(error);
+         console.log(error);
+        next(new Error(error));
     });
 };
 
@@ -69,7 +72,8 @@ exports.updateAppointmentStatus = (req, res, next) => {
 
         }
     }).catch(error => {
-        console.log(error);
+         console.log(error);
+        next(new Error(error));
     });
 };
 
@@ -82,7 +86,8 @@ exports.removeAppointment = (req, res, next) => {
             res.json("0");
         }
     }).catch(error => {
-        console.log(error);
+         console.log(error);
+        next(new Error(error));
     });
 };
 
@@ -91,7 +96,8 @@ exports.fetchAppointmentById = (req, res, next) => {
     Appointment.getAppointmentById(appID).then(([rows, fieldSet]) => {
         res.json(rows);
     }).catch(error => {
-        console.log(error);
+         console.log(error);
+        next(new Error(error));
     });
 };
 
@@ -100,7 +106,8 @@ exports.fetchAppointmentsByCustomerID = (req, res, next) => {
     Appointment.fetchAllAppointmentsByCustomerID(userID).then(([rows, fieldSet]) => {
         res.json(rows);
     }).catch(error => {
-        console.log(error);
+         console.log(error);
+        next(new Error(error));
     });
 };
 
