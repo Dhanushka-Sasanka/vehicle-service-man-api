@@ -12,6 +12,8 @@ router.get('/fetchAppointmentsByCustomerID/:userID', appointmentController.fetch
 router.post('/updateAppointment/:appID', appointmentController.updateAppointment);
 router.post('/deleteAppointment/:appID', appointmentController.removeAppointment);
 
+router.get('/fetchAppointmentsWithVehicle', appointmentController.fetchAllAppointmentsWithVehicleDetails);
+
 
 
 module.exports = router;

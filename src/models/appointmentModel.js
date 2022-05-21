@@ -48,6 +48,9 @@ module.exports = class Appointment {
         const query = "UPDATE appointment set status = ?  WHERE appID = ?";
         return db.execute(query, [this.status, this.appID]);
     }
-
+    static fetchAllAppointmentsWithVehicleDetails() {
+        const query = "SELECT * FROM appointment a, vehicle v ,services s WHERE a.vehicleID = v.vehicleID AND s.serviceID=a.service_ID";
+        return db.execute(query);
+    }
 
 };

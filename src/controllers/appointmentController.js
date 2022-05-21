@@ -1,5 +1,6 @@
 const Appointment = require('../models/appointmentModel');
 
+// admin-appointment-view
 exports.appointmentView = (req, res, next) => {
     res.render('admin-appointment');
 };
@@ -107,6 +108,15 @@ exports.fetchAppointmentsByCustomerID = (req, res, next) => {
         res.json(rows);
     }).catch(error => {
          console.log(error);
+        next(new Error(error));
+    });
+};
+
+exports.fetchAllAppointmentsWithVehicleDetails = (req, res, next) => {
+    Appointment.fetchAllAppointmentsWithVehicleDetails().then(([rows, fieldSet]) => {
+        res.json(rows);
+    }).catch(error => {
+        console.log(error);
         next(new Error(error));
     });
 };

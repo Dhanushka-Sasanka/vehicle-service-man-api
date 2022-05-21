@@ -33,13 +33,15 @@ app.use(express.static(path.join(__dirname, '../src/views/template/controllers')
 
 // template partials path
 const templatePath = path.join(__dirname, '/views');
-const partialPath = path.join(__dirname, '/views/template/admin');
+const adminPartialPath = path.join(__dirname, '/views/template/admin');
+const employeePartialPath = path.join(__dirname, '/views/template/employee');
 /*set view template */
 app.set('view engine', 'hbs');
 app.engine('html', require('hbs').__express);
 app.set('views', templatePath);
 app.use(pjax());
-template.registerPartials(partialPath);
+template.registerPartials(adminPartialPath);
+template.registerPartials(employeePartialPath);
 // db.execute('')
 
 app.use((req, res, next) => {
@@ -54,8 +56,8 @@ app.use((req, res, next) => {
 /*all app routers in here*/
 app.use('/auth', authRoutes);
 // app.use('/sign-up' , adminRoutes);
+app.use('/employee', employeeRoutes);
 app.use('/admin', adminRoutes);
-app.use('/employees', employeeRoutes);
 app.use('/service', serviceRoutes);
 app.use('/appointment', appointmentRoutes);
 app.use('/vehicle', vehicleRoutes);
